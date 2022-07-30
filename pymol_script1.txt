@@ -1,0 +1,18 @@
+cmd.select("temp_sele", selection="cluster_lowest_score_ligands")
+cmd.hide("lines", "temp_sele")
+cmd.hide("sticks", "temp_sele")
+seleobjs = cmd.get_object_list('(temp_sele)')
+seleobjs.pop(0)
+for obj in seleobjs: 
+     print(obj)
+     cmd.select("s_%s" % obj, selection="%s" % obj)
+     cmd.show("sticks", "s_%s" % obj)
+     cmd.hide("sticks", "s_%s and elem H" % obj)
+     cmd.show("sticks", "s_%s and (elem H and neighbor (elem N+O))" % obj)
+     cmd.disable("%s" % obj)
+     cmd.set_name(obj, obj.replace("ZINC00", "ZINC"))
+     cmd.delete("s_%s" % obj)
+
+cmd.delete("temp_sele")
+cmd.delete("temp_prot")
+

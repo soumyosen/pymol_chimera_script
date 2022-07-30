@@ -1,0 +1,17 @@
+cmd.select("temp_sele", selection="glide_SP1c_lowE_for_pymol1")
+seleobjs = cmd.get_object_list('(temp_sele)')
+seleobjs.pop(0)
+keeping_object = ["glide_SP1c_lowE_for_pymol1.TDI-003628-NX-1", "glide_SP1c_lowE_for_pymol1.TDI-002587-NX-1", "glide_SP1c_lowE_for_pymol1.TDI-002587-NX-2",
+                  "glide_SP1c_lowE_for_pymol1.TDI-001360-NX-1", "glide_SP1c_lowE_for_pymol1.TDI-003683-NX-1"]
+keeping_object1 = ["glide_SP1c_lowE_for_pymol1.TDI-002591-NX-1", "glide_SP1c_lowE_for_pymol1.TDI-003477-NX-1", "glide_SP1c_lowE_for_pymol1.TDI-003489-NX-1",
+                  "glide_SP1c_lowE_for_pymol1.TDI-003629-NX-1", "glide_SP1c_lowE_for_pymol1.TDI-001367-NX-1", "glide_SP1c_lowE_for_pymol1.TDI-003172-NX-1",
+                  "glide_SP1c_lowE_for_pymol1.TDI-003379-NX-1", "glide_SP1c_lowE_for_pymol1.TDI-001448-NX-1", "glide_SP1c_lowE_for_pymol1.TDI-008221-CL-1", 
+                  "glide_SP1c_lowE_for_pymol1.TDI-008180-NX-1"]
+
+
+for obj in seleobjs:
+    print(obj)
+    if obj not in keeping_object1:
+        cmd.delete(obj)
+
+cmd.delete("temp_sele") 

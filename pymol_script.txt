@@ -1,0 +1,18 @@
+cmd.select("sele", selection="all")
+cmd.hide("lines", "sele")
+seleobjs = cmd.get_object_list('(sele)')
+for obj in seleobjs: 
+     #print(obj)
+     cmd.select("s_%s" % obj, selection="byres ((%s and sidechain and (not elem H)) w. 4 of (%s and resn UNK)) and not resn UNK" % (obj, obj))
+     cmd.select("s_%s_unk" % obj, selection="%s and resname UNK" % obj)
+     cmd.show("lines", "s_%s and not (name C+O+N or elem H)" % obj)
+     cmd.show("lines", "s_%s and sc. and (elem H and neighbor (elem N+O))" % obj)
+     #cmd.show("sticks", "s_%s_unk and not elem H" % obj)
+     cmd.show("sticks", "s_%s_unk" % obj)
+     cmd.delete("s_%s" % obj)
+     cmd.delete("s_%s_unk" % obj)
+     cmd.set_name(obj, obj.replace("ZINC000", "ZINC"))
+
+cmd.delete("sele")
+cmd.disable("all")
+
